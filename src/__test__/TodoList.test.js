@@ -24,5 +24,10 @@ describe('TodoList', () => {
       
       expect(todoList.state('items')).toEqual(expectedItems)
     })
+
+    it('it appears on the todo list', () => {
+    
+      expect(todoList.children().find('li').exists()).toBe(true)
+    })
   })
 })

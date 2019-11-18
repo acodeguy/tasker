@@ -41,6 +41,18 @@ class TodoList extends Component {
           <input id='new-item-title' value={this.state.task} type='text' onChange={this.handleChange} required />
           <input type='submit' id='btn-add-item' value='Add' />
         </form>
+
+        {this.state.items ?
+
+          <ul>
+            {this.state.items.map((item, index) => {
+              return <li className='todo-item' key={index}>{item.task}</li>
+            })}
+          </ul>
+
+        : null
+
+        }
       </div>
     )
   }

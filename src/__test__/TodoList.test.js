@@ -41,7 +41,7 @@ describe('TodoList', () => {
 
     todoList.find('.btn-delete-item').simulate('click')
 
-    it('is deleted from the state', () => {
+    it('is deleted from the page', () => {
 
       expect(todoList.children().find('li').exists()).toBe(false)
     })

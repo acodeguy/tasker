@@ -8,9 +8,9 @@ configure({ adapter: new Adapter() })
 
 describe('TodoList', () => {
 
-  const todoList = mount(<TodoList />)
-
   describe('when adding a new item', () => {
+
+    const todoList = mount(<TodoList />)
 
     const newItem = 'Get my car serviced'
     todoList.find('#new-item-title').simulate('change', { target : { value: newItem } })
@@ -29,5 +29,22 @@ describe('TodoList', () => {
     
       expect(todoList.children().find('li').exists()).toBe(true)
     })
+  })
+
+  describe('when deleting an existing item', () => {
+
+    const todoList = mount(<TodoList />)
+
+    const newItem = 'Sell my Xbox One'
+    todoList.find('#new-item-title').simulate('change', { target : { value: newItem } })
+    todoList.find('#btn-add-item').simulate('submit', { preventDefault: () => {} })
+
+    todoList.find('.btn-delete-item').simulate('click')
+
+    it('is deleted from the state', () => {
+
+      expect(todoList.children().find('li').exists()).toBe(false)
+    })
+
   })
 })

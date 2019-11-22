@@ -17,3 +17,10 @@ This app is being built using a test-first approach with Jest and Enzyme. If tha
 ## Deployment (CI/CD)
 
 Currently, this app is tested and deployed via Travis CI and Heroku.
+
+## Future Plans
+
+As I'm still learning React as I go, I'm putting most of my energy into that. But I do have plans for the future...
+
+1. Redux
+2. Styling w/ Bootstrap

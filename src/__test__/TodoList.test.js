@@ -45,6 +45,27 @@ describe('TodoList', () => {
 
       expect(todoList.children().find('li').exists()).toBe(false)
     })
+  })
 
+  describe('when toggling the completion status', () => {
+
+    const todoList = mount(<TodoList />)
+
+    const newItem = 'Cancel my Apple Arcade subscription'
+    todoList.find('#new-item-title').simulate('change', { target : { value: newItem } })
+    todoList.find('#btn-add-item').simulate('submit', { preventDefault: () => {} })
+
+    it('sets the item to be completed when clicked', () => {
+
+      todoList.find('.btn-toggle-item').simulate('click')
+
+      const expectedItemState = [{
+        task: newItem,
+        completed: true
+      }]
+
+      expect(todoList.state('items')).toEqual(expectedItemState)
+    })
+    
   })
 })

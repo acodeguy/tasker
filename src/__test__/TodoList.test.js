@@ -66,6 +66,18 @@ describe('TodoList', () => {
 
       expect(todoList.state('items')).toEqual(expectedItemState)
     })
+
+    it('sets the item to be incomplete when clicked again', () => {
+
+      todoList.find('.btn-toggle-item').simulate('click')
+
+      const expectedItemState = [{
+        task: newItem,
+        completed: false
+      }]
+
+      expect(todoList.state('items')).toEqual(expectedItemState)
+    })
     
   })
 })

@@ -85,5 +85,12 @@ describe('TodoList', () => {
 
       expect(todoList.state('items')).toEqual(expectedItemState)
     })
+
+    it('sets the text style back to none', () => {
+
+      const actualStyle = todoList.find('.todo-item').prop('style')
+      const expectedStyle = { textDecoration: 'none' }
+      expect(actualStyle).toEqual(expectedStyle)
+    })
   })
 })

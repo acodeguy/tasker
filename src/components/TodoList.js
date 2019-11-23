@@ -67,7 +67,12 @@ class TodoList extends Component {
 
           <ul>
             {this.state.items.map((item, index) => {
-              return <li className='todo-item' key={index}>
+
+              const textStyle = item.completed === true ?
+                { textDecoration: 'line-through' } :
+                { textDecoration: 'none' }
+
+              return <li className='todo-item' style={textStyle} key={index}>
                         {item.task}
                         <button className='btn-toggle-item' onClick={() => this.handleCompletionToggle(index)}>Toggle</button>
                         <button className='btn-delete-item' onClick={() => this.handleDelete(index)}>Delete</button>

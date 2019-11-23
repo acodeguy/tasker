@@ -67,6 +67,13 @@ describe('TodoList', () => {
       expect(todoList.state('items')).toEqual(expectedItemState)
     })
 
+    it('sets the text style to line-through', () => {
+
+      const actualStyle = todoList.find('.todo-item').prop('style')
+      const expectedStyle = { textDecoration: 'line-through' }
+      expect(actualStyle).toEqual(expectedStyle)
+    })
+
     it('sets the item to be incomplete when clicked again', () => {
 
       todoList.find('.btn-toggle-item').simulate('click')
@@ -78,6 +85,5 @@ describe('TodoList', () => {
 
       expect(todoList.state('items')).toEqual(expectedItemState)
     })
-    
   })
 })

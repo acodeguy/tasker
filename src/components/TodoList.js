@@ -72,9 +72,13 @@ class TodoList extends Component {
                 { textDecoration: 'line-through' } :
                 { textDecoration: 'none' }
 
+              const toggleButtonText = item.completed === true ?
+                'Mark as Incomplete' :
+                'Mark as Completed'
+
               return <li className='todo-item' style={textStyle} key={index}>
                         {item.task}
-                        <button className='btn-toggle-item' onClick={() => this.handleCompletionToggle(index)}>Toggle</button>
+                        <button className='btn-toggle-item' onClick={() => this.handleCompletionToggle(index)}>{toggleButtonText}</button>
                         <button className='btn-delete-item' onClick={() => this.handleDelete(index)}>Delete</button>
                     </li>                
               

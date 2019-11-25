@@ -1,4 +1,4 @@
-# Tasker
+# Tasker [![Build Status](https://travis-ci.org/acodeguy/tasker.svg?branch=master)](https://travis-ci.org/acodeguy/tasker) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f20b64fbd9de4c60a788b058446ef37e)](https://www.codacy.com/manual/acodeguy/tasker?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=acodeguy/tasker&amp;utm_campaign=Badge_Grade)
 ### Todo list app built in React using TDD (work-in-progress)
 (Current, live version [up on Heroku](https://tasker-react.herokuapp.com/))
 

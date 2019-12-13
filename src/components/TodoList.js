@@ -2,48 +2,48 @@ import React, { Component } from 'react'
 import Todo from './Todo'
 
 class TodoList extends Component {
-
   constructor() {
-    
     super()
 
     this.state = {
       task: '',
-      items: []
+      items: [],
+      nextId: 1
     }
   }
 
   handleChange = event => {
-
     this.setState({
       ...this.state,
       task: event.target.value
     })
   }
 
-  handleDelete = index => { console.log('index', index)
-    
+  handleDelete = id => {   
     this.setState({
       ...this.state,
-      items: this.state.items.filter((item, idx) => idx !== index)
+      items: this.state.items.filter(item => item.id !== id)
     })
   }
 
   handleSubmit = event => {
-
     const allItems = this.state.items.slice()
-    allItems.push({ task: this.state.task, completed: false })
+    allItems.push({ 
+      task: this.state.task, 
+      completed: false,
+      id: this.state.nextId
+    })
 
     this.setState({
       task: '',
-      items: allItems
+      items: allItems,
+      nextId: this.state.nextId + 1
     })
 
     event.preventDefault()
   }
 
   render() {
-
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -53,13 +53,11 @@ class TodoList extends Component {
 
         {this.state.items ?
           <ul>
-            {this.state.items.map((item, index) => {
+            {this.state.items.map((item) => {
 
               return <Todo
-                        key={index}
-                        id={index}
-                        task={item.task}
-                        completed={item.completed}
+                        key={item.id}
+                        todo={item}
                         delete={this.handleDelete}
                       /> 
             })}

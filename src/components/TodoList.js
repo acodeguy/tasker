@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Todo from './Todo'
 
 class TodoList extends Component {
 
@@ -20,20 +21,7 @@ class TodoList extends Component {
     })
   }
 
-  handleCompletionToggle = index => {
-
-    const allTodos = this.state.items
-    const todoBeingToggled = allTodos[index]
-    todoBeingToggled.completed = !todoBeingToggled.completed
-    allTodos.splice(index, 1, todoBeingToggled)
-
-    this.setState({
-      ...this.state,
-      items: allTodos
-    })
-  }
-
-  handleDelete = index => {
+  handleDelete = index => { console.log('index', index)
     
     this.setState({
       ...this.state,
@@ -64,29 +52,19 @@ class TodoList extends Component {
         </form>
 
         {this.state.items ?
-
           <ul>
             {this.state.items.map((item, index) => {
 
-              const textStyle = item.completed === true ?
-                { textDecoration: 'line-through' } :
-                { textDecoration: 'none' }
-
-              const toggleButtonText = item.completed === true ?
-                'Mark as Incomplete' :
-                'Mark as Completed'
-
-              return <li className='todo-item' style={textStyle} key={index}>
-                        {item.task}
-                        <button className='btn-toggle-item' onClick={() => this.handleCompletionToggle(index)}>{toggleButtonText}</button>
-                        <button className='btn-delete-item' onClick={() => this.handleDelete(index)}>Delete</button>
-                    </li>                
-              
+              return <Todo
+                        key={index}
+                        id={index}
+                        task={item.task}
+                        completed={item.completed}
+                        delete={this.handleDelete}
+                      /> 
             })}
           </ul>
-
         : null
-
         }
       </div>
     )

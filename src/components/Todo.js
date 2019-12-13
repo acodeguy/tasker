@@ -37,7 +37,7 @@ class Todo extends Component {
       <li className='todo-item' style={textStyle}>
           &#35;{id}: {task}
           <button className='btn-toggle-item' onClick={this.handleCompletionToggle}>{toggleButtonText}</button>
-          <button className='btn-delete-item' onClick={this.props.delete}>Delete</button>
+          <button className='btn-delete-item' onClick={() => this.props.delete(id)}>Delete</button>
       </li>   
     )    
   }

@@ -1,28 +1,24 @@
 import React, { Component } from 'react'
 
 class Todo extends Component {
-
   constructor(props) {
-
     super(props)
 
     this.state = {
-      ...this.props
+      ...this.props.todo
     }
   }
 
   handleCompletionToggle = () => {
-
-   const newCompletionStation = !this.state.completed
+   const newCompletionStatus = !this.state.completed
 
     this.setState({
       ...this.state,
-      completed: newCompletionStation
+      completed: newCompletionStatus
     })
   }
 
-  render() {
-
+  render() { 
     const { task, completed, id } = this.state
 
     const textStyle = completed === true ?
@@ -34,10 +30,10 @@ class Todo extends Component {
       'Mark as Completed'
 
     return(
-      <li className='todo-item' style={textStyle}>
+      <li className='todo-item' style={textStyle} id={id}>
           &#35;{id}: {task}
           <button className='btn-toggle-item' onClick={this.handleCompletionToggle}>{toggleButtonText}</button>
-          <button className='btn-delete-item' onClick={this.props.delete}>Delete</button>
+          <button className='btn-delete-item' onClick={() => this.props.delete(id)}>Delete</button>
       </li>   
     )    
   }

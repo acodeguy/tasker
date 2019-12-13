@@ -16,30 +16,28 @@ describe('TodoList', () => {
     todoList.find('#new-item-title').simulate('change', { target : { value: newItem } })
     todoList.find('#btn-add-item').simulate('submit', { preventDefault: () => {} })
 
-    it('it is inserted into the items array in the state', () => {
-      
-      expect(todoList.state('items').length).toEqual(1)
-    })
-
     it('it appears on the todo list', () => {
     
       expect(todoList.children().find('li').exists()).toBe(true)
     })
   })
 
-  describe('when deleting an existing item', () => {
+  describe('when a todo is deleted', () => {
 
     const todoList = mount(<TodoList />)
-
+    
     const newItem = 'Sell my Xbox One'
     todoList.find('#new-item-title').simulate('change', { target : { value: newItem } })
     todoList.find('#btn-add-item').simulate('submit', { preventDefault: () => {} })
 
-    todoList.find('.btn-delete-item').simulate('click')
-
-    it('is deleted from the page', () => {
-
-      expect(todoList.children().find('li').exists()).toBe(false)
+    todoList.setState({
+      task: '',
+      items: [],
+      nextId: 2
+    })
+    
+    it('no longer appears on the list', () => {
+      expect(todoList.find('.todo-item').exists()).toBe(false)
     })
   })
 })

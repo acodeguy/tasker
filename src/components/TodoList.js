@@ -1,61 +1,49 @@
 import React, { Component } from 'react'
+import Todo from './Todo'
 
 class TodoList extends Component {
-
   constructor() {
-    
     super()
 
     this.state = {
       task: '',
-      items: []
+      items: [],
+      nextId: 1
     }
   }
 
   handleChange = event => {
-
     this.setState({
       ...this.state,
       task: event.target.value
     })
   }
 
-  handleCompletionToggle = index => {
-
-    const allTodos = this.state.items
-    const todoBeingToggled = allTodos[index]
-    todoBeingToggled.completed = !todoBeingToggled.completed
-    allTodos.splice(index, 1, todoBeingToggled)
-
+  handleDelete = id => {   
     this.setState({
       ...this.state,
-      items: allTodos
-    })
-  }
-
-  handleDelete = index => {
-    
-    this.setState({
-      ...this.state,
-      items: this.state.items.filter((item, idx) => idx !== index)
+      items: this.state.items.filter(item => item.id !== id)
     })
   }
 
   handleSubmit = event => {
-
     const allItems = this.state.items.slice()
-    allItems.push({ task: this.state.task, completed: false })
+    allItems.push({ 
+      task: this.state.task, 
+      completed: false,
+      id: this.state.nextId
+    })
 
     this.setState({
       task: '',
-      items: allItems
+      items: allItems,
+      nextId: this.state.nextId + 1
     })
 
     event.preventDefault()
   }
 
   render() {
-
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -64,29 +52,17 @@ class TodoList extends Component {
         </form>
 
         {this.state.items ?
-
           <ul>
-            {this.state.items.map((item, index) => {
+            {this.state.items.map((item) => {
 
-              const textStyle = item.completed === true ?
-                { textDecoration: 'line-through' } :
-                { textDecoration: 'none' }
-
-              const toggleButtonText = item.completed === true ?
-                'Mark as Incomplete' :
-                'Mark as Completed'
-
-              return <li className='todo-item' style={textStyle} key={index}>
-                        {item.task}
-                        <button className='btn-toggle-item' onClick={() => this.handleCompletionToggle(index)}>{toggleButtonText}</button>
-                        <button className='btn-delete-item' onClick={() => this.handleDelete(index)}>Delete</button>
-                    </li>                
-              
+              return <Todo
+                        key={item.id}
+                        todo={item}
+                        delete={this.handleDelete}
+                      /> 
             })}
           </ul>
-
         : null
-
         }
       </div>
     )

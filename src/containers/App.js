@@ -9,7 +9,8 @@ class App extends Component {
                 <Row>
                     <Col>
                         <Jumbotron>
-                            <h3 className='text-center'>Tasker</h3>
+                            <h2 className='text-center'>Tasker</h2>
+                            <h6>Built using Behaviour-Driven Development with React, Jest and Enzyme | <a href='https://github.com/acodeguy/tasker'>Source code on GitHub</a></h6>
                         </Jumbotron>
                     </Col>
                 </Row>
@@ -19,6 +20,11 @@ class App extends Component {
                         <TodoList />
                     </Col>
                     <Col md='2'></Col>
+                </Row>
+                <Row>
+                    <Col>
+                        
+                    </Col>
                 </Row>
             </Container>
         )

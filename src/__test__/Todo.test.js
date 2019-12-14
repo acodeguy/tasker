@@ -1,5 +1,5 @@
 import React from 'react'
-import { configure, mount, shallow } from 'enzyme'
+import { configure, shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import Todo from '../components/Todo'
 
@@ -21,16 +21,16 @@ describe('Todo', () => {
     it('sets the text style to line-through', () => {
       todo.find('.btn-toggle-item').simulate('click')
 
-      const actualStyle = todo.find('.todo-item').prop('style')
-      const expectedStyle = { textDecoration: 'line-through' }
+      const actualStyle = todo.find('.task-text').prop('style')
+      const expectedStyle = { textDecoration: 'line-through', textTransform: 'uppercase' }
       expect(actualStyle).toEqual(expectedStyle)
     })
 
     it('sets the text style back to none', () => {
       todo.find('.btn-toggle-item').simulate('click')
 
-      const actualStyle = todo.find('.todo-item').prop('style')
-      const expectedStyle = { textDecoration: 'none' }
+      const actualStyle = todo.find('.task-text').prop('style')
+      const expectedStyle = { textDecoration: 'none', textTransform: 'uppercase' }
       expect(actualStyle).toEqual(expectedStyle)
     })
   })

@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
 import Todo from './Todo'
+import { 
+  Button,
+  Form, 
+  FormGroup, 
+  Input, 
+  Label,
+  ListGroup
+  } from 'reactstrap'
 
 class TodoList extends Component {
   constructor() {
@@ -44,24 +52,31 @@ class TodoList extends Component {
   }
 
   render() {
+    const listStyle = { listStyle: 'none' }
+
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input id='new-item-title' value={this.state.task} type='text' onChange={this.handleChange} required />
-          <input type='submit' id='btn-add-item' value='Add' />
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <FormGroup>
+            <Label for='new-item-title'>Task title:</Label>
+            <Input id='new-item-title' value={this.state.task} type='text' onChange={this.handleChange} placeholder='i.e., Buy some milk' required />
+            <Button color='primary' className='mt-2' size='lg' block type='submit' id='btn-add-item'>Add</Button>
+          </FormGroup>
+        </Form>
 
         {this.state.items ?
-          <ul>
+          <ListGroup style={listStyle}>
             {this.state.items.map((item) => {
 
-              return <Todo
-                        key={item.id}
-                        todo={item}
-                        delete={this.handleDelete}
-                      /> 
+              return(
+                <Todo
+                    key={item.id}
+                    todo={item}
+                    delete={this.handleDelete}
+                  /> 
+              )
             })}
-          </ul>
+          </ListGroup>
         : null
         }
       </div>

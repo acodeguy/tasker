@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { Button } from 'reactstrap'
+import { 
+  Button,
+  ListGroupItem } 
+  from 'reactstrap'
 
 class Todo extends Component {
   constructor(props) {
@@ -31,19 +34,23 @@ class Todo extends Component {
       { textDecoration: 'none', textTransform: 'uppercase' }
     
     const toggleButtonText = completed === true ?
-      'Not Done ❌' :
-      'Done ✅'
+      'Mark as Not Done' :
+      'Mark as Done'
+
+    const taskCompletionStatus = completed === true ?
+      '✅' :
+      '❌'
 
     const toggleButtonColour = completed === true ?
       'primary' :
       'success'
 
     return(
-      <li className='todo-item m-1' id={id}>
-          &#35;{id}: <span className={taskTextClasses} style={textStyle}>{task}</span>
-          <Button color={toggleButtonColour} className='btn-toggle-item mr-1 ml-4' onClick={this.handleCompletionToggle}>{toggleButtonText}</Button>
-          <Button color='danger' className='btn-delete-item' onClick={() => this.props.delete(id)}>Delete</Button>
-      </li>   
+      <ListGroupItem className='todo-item m-2 p-2' id={id}>
+        <span>{taskCompletionStatus} &#35;{id}: <span className={taskTextClasses} style={textStyle}>{task}</span></span>
+        <Button color={toggleButtonColour} className='btn-toggle-item mr-1 ml-4' onClick={this.handleCompletionToggle}>{toggleButtonText}</Button>
+        <Button color='danger' className='btn-delete-item' onClick={() => this.props.delete(id)}>Delete</Button>
+      </ListGroupItem>   
     )    
   }
 }

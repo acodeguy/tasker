@@ -6,6 +6,7 @@ import {
   FormGroup, 
   Input, 
   Label,
+  ListGroup
   } from 'reactstrap'
 
 class TodoList extends Component {
@@ -64,7 +65,7 @@ class TodoList extends Component {
         </Form>
 
         {this.state.items ?
-          <ul style={listStyle}>
+          <ListGroup style={listStyle}>
             {this.state.items.map((item) => {
 
               return(
@@ -75,7 +76,7 @@ class TodoList extends Component {
                   /> 
               )
             })}
-          </ul>
+          </ListGroup>
         : null
         }
       </div>

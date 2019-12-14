@@ -13,11 +13,10 @@ describe('TodoList', () => {
     const todoList = mount(<TodoList />)
 
     const newItem = 'Get my car serviced'
-    todoList.find('#new-item-title').simulate('change', { target : { value: newItem } })
-    todoList.find('#btn-add-item').simulate('submit', { preventDefault: () => {} })
+    todoList.find('input').first().simulate('change', { target : { value: newItem } })
+    todoList.find('form').simulate('submit', { preventDefault: () => {} })
 
     it('it appears on the todo list', () => {
-    
       expect(todoList.children().find('li').exists()).toBe(true)
     })
   })
@@ -27,8 +26,8 @@ describe('TodoList', () => {
     const todoList = mount(<TodoList />)
     
     const newItem = 'Sell my Xbox One'
-    todoList.find('#new-item-title').simulate('change', { target : { value: newItem } })
-    todoList.find('#btn-add-item').simulate('submit', { preventDefault: () => {} })
+    todoList.find('input').first().simulate('change', { target : { value: newItem } })
+    todoList.find('form').simulate('submit', { preventDefault: () => {} })
 
     todoList.setState({
       task: '',

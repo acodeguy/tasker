@@ -6,3 +6,10 @@ export const addTodo = todo => {
     payload: todo
   }
 }
+
+export const incrementTodoIDCounter = counter => {
+  return {
+    type: constants.INCREMENT_TODO_ID_COUNTER,
+    payload: counter += 1
+  }
+}

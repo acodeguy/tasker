@@ -17,7 +17,7 @@ describe('TodoList', () => {
     todoList.find('form').simulate('submit', { preventDefault: () => {} })
 
     it('it appears on the todo list', () => {
-      expect(todoList.children().find('li').exists()).toBe(true)
+      expect(todoList.contains(newItem)).toBe(true)
     })
   })
 
@@ -36,7 +36,7 @@ describe('TodoList', () => {
     })
     
     it('no longer appears on the list', () => {
-      expect(todoList.find('.todo-item').exists()).toBe(false)
+      expect(todoList.contains(newItem)).toBe(false)
     })
   })
 })
